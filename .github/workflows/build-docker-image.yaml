@@ -58,7 +58,7 @@ jobs:
           type=ref,event=branch
           type=ref,event=pr
           type=ref,event=tag
-          type=edge
+          type=edge,branch=feature/*
           type=sha
 
     - name: build and push
