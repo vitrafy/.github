@@ -58,8 +58,10 @@ jobs:
           type=ref,event=branch
           type=ref,event=pr
           type=ref,event=tag
-          type=edge,branch=feature/*
           type=sha
+          type=raw,value=edge,enable=${{ github.ref == 'refs/heads/feature/*' }}
+          type=raw,value=develop,enable=${{ github.ref == 'refs/heads/develop' }}
+          type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
 
     - name: build and push
       uses: docker/build-push-action@v6
