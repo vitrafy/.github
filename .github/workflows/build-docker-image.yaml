@@ -45,7 +45,8 @@ jobs:
       uses: docker/login-action@v3
       with:
         registry: https://${{ inputs.container-registry }}
-        username: ${{ github.actor }}
+        username: 'vfy-gh-svc'
+        # username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: docker metadata
