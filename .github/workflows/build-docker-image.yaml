@@ -1,5 +1,11 @@
 name: build and push docker images
 
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  packages: write
+
 on:
   workflow_call:
     inputs:
