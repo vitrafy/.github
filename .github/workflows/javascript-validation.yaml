@@ -9,7 +9,7 @@ on:
         default: .
       node-version:
         type: string
-        required: true
+        required: false
         default: 22
 
 jobs:
