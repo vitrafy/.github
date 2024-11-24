@@ -1,0 +1,35 @@
+name: run validation for js
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        type: string
+        required: true
+        default: .
+      node-version:
+        type: string
+        required: true
+        default: 22
+
+jobs:
+  lint:
+    name: pull request check
+    runs-on: selfhosted,base
+
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+
+    steps:
+    - name: check out the repo
+      uses: actions/checkout@v4
+
+    - name: use node version ${{ inputs.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: run lint
+      run: npm run lint
+
