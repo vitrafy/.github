@@ -15,7 +15,7 @@ on:
 jobs:
   lint:
     name: pull request check
-    runs-on: selfhosted,base
+    runs-on: self-hosted,base
 
     defaults:
       run:
