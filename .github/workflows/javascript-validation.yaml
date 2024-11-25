@@ -14,7 +14,7 @@ on:
 
 jobs:
   lint:
-    name: pull request check
+    name: check lint
     runs-on: [self-hosted, base]
 
     defaults:
@@ -29,6 +29,9 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node-version }}
+
+    - name: run lint
+      run: npm install eslint
 
     - name: run lint
       run: npm run lint
