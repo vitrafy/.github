@@ -15,7 +15,7 @@ on:
 jobs:
   lint:
     name: check lint
-    runs-on: [self-hosted, base]
+    runs-on: [self-hosted, node22]
 
     defaults:
       run:
