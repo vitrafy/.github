@@ -25,6 +25,11 @@ jobs:
     - name: check out the repo
       uses: actions/checkout@v4
 
+    - name: setup node
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ inputs.node-version }}
+
     - name: npm install
       run: npm install
 
