@@ -12,7 +12,7 @@ on:
         required: true
       container-registry-name:
         type: string
-        required: atrue
+        required: true
       image-version:
         type: string
         required: true
@@ -44,5 +44,5 @@ jobs:
         az acr build \
           --registry "${{ inputs.container-registry-name }}" \
           --image "${{ inputs.image-name }}:${{ inputs.image-version }}" \
-          --file ${{ inputs.dockerfile }} .
+          --file ${{ inputs.dockerfile }}
 
