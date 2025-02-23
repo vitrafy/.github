@@ -1,0 +1,48 @@
+name: build docker images on azure container registry
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        type: string
+        required: false
+        default: .
+      dockerfile:
+        type: string
+        required: true
+      container-registry-name:
+        type: string
+        required: true
+      image-version:
+        type: string
+        required: true
+      image-name:
+        type: string
+        required: true
+
+jobs:
+  docker:
+    name: build and push docker image
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+
+    steps:
+    - name: check out the repo
+      uses: actions/checkout@v4
+
+    - name: "azure login"
+      uses: azure/login@v2
+      with:
+        creds: ${{ secrets.azure_creds }}
+
+    - name: "build runner image on acr"
+      working-directory: image
+      run: |
+        az acr build \
+          --registry "${{ inputs.container-registry-name }}" \
+          --image "${{ inputs.image-name }}:${{ inputs.image-version }}" \
+          --file ${{ inputs.dockerfile }}
+
